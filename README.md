@@ -25,7 +25,7 @@ Développement à venir
 Installation
 ------------
 
-1.  Télécharger le projet
+1.  Télécharger le projet, votre serveur doit pointer dans le dossier **web**
 
 2.  Lancer la commande :  `composer update`
 
