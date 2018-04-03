@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.weebox.com'),
+    'host' => env('MAIL_HOST', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'contact@cumcorpus.fr',
-        'name' => 'CumCorpus',
+        'address' => '',
+        'name' => '',
     ],
 
     /*
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => 'contact@cumcorpus.fr',
+    'username' => '',
 
-    'password' => 'globule',
+    'password' => '',
 
     /*
     |--------------------------------------------------------------------------
