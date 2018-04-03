@@ -1,0 +1,81 @@
+// Brands
+$brand-primary: #3097D1;
+$brand-info: #8eb4cb;
+$brand-success: #2ab27b; // Message d'alerte de succès
+$brand-warning: #cbb956;
+$brand-danger: #f03c69; // Message d'alerte d'erreur
+
+// Typography
+@import url('https://fonts.googleapis.com/css?family=Archivo+Narrow:400,400i,600,600i,700,700i|Crimson+Text:400,600,700|Lobster+Two:400,700');
+$fontFamilyBase: 'Archivo Narrow', sans-serif;
+$fontFamilyTitle: 'Archivo Narrow', sans-serif;
+$fontFamilyOther: "Crimson Text", sans-serif;
+$fontSizeBase: 0.875rem;
+$lineHeightBase: 1.2;
+$textColor: #000;
+$mainFontColor:#2c3136;
+$categoryColor:#939598; // Couleur typo des produits
+$productColor:#504f53; // Couleur typo des produits
+
+// Navbar
+$navbar-default-bg: #fff;
+
+// Default
+$bodyBackgroundFront:#FFFFFF; // Couleur du background pour le thème
+$bodyBackground:#f3faff; // Couleur du background pour l'administration
+$durationTransition:0.3s; // Durée des transitions des liens
+$mainColor:rgba(56, 56, 56, 1); // Couleur principal du thème
+$frontShadowColor:rgba(232, 232, 232, 1); // Taille du container
+$containerWidth:1075px; // Taille du container
+$homeContentBackground:#e6e6e6; // Background des contenus sur l'accueil
+
+// Header
+$headerColor:$mainFontColor;
+$headerGradiantTop:rgba(248,248,249,1); // Couleur du dégradé haut header
+$headerGradiantBottom:rgba(242,243,243,1); // Couleur du dégradé bas header
+$headerTopGrandiant: linear-gradient(to bottom, $headerGradiantTop 0%, $headerGradiantBottom 100%);
+$headerTopBackground:$headerGradiantTop; // Background du header si dégradé non pris en charge par le navigateur
+$headerTopBorderColor:#c8c8c8; // Couleur bordure header
+$headerBackground:#FFF;
+
+// Navigation
+$navigationLinkBackground:$homeContentBackground; // Background de la navigatation
+$navigationLinkBackgroundActive:$mainColor; // Background de la navigatation quand le lien est actif
+$navigationLinkColor:rgba(42, 43, 46, 1); // Couleur du lien
+$navigationLinkColorActive:#FFF; // Couleur du lien quand il est actif
+$navigationBorderChild:#edeeef; // Bordure du sous menu
+
+// HeadTitle
+$headTitleBackground:#869597; // Background du titre de la page
+$headTitleColor:#000; // Couleur du titre de la page
+
+// SearchBar
+$borderColor:#e6e7e8; // Bordure de la barre de recherche
+$paginationColor:#a7a9ac; // Couleur de la pagination
+$paginationColorActive:$mainColor; // Couleur de la pagination active
+
+// Formulaires
+$inputHeight:28px; // Hauteur champs
+$inputBorder:#bcbec0; // Couleur bordure
+$inputColor:#bcbec0; // Couleur typo
+$inputBackground:#e6e7e8; // Couleur background
+
+// Footer
+$footerBackground:$mainColor; // Couleur du background
+$footerColor:#FFF; // Couleur typo
+
+// Administration
+$adminShadowColor:rgba(0, 51, 90, 0.1);
+
+// Administration - Navigation
+$adminNavigationBackground:$headerBackground;
+$adminNavigationLinkBackground:#e5f3fe;
+$adminNavigationLinkColor:#757893;
+$adminNavigationLinkBackgroundActive:#FFF;
+$adminNavigationLinkColorActive:#382244;
+
+// Administration - Tableau de gestion
+$adminTheadBackground:#f4f3f8;
+$adminTheadColor:#575962;
+$adminTdEvenBackground:#f7f6fa;
+$adminTdOddBackground:#fff;

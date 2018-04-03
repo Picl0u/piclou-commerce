@@ -1,0 +1,18 @@
+<?php [
+    'firstname' => 'Firstname',
+    'lastname' => 'Lastname',
+    'email' => 'Email',
+    'password' => 'Password',
+    'password_confirm' => 'Password confirm',
+    'register' => 'Register',
+    'login' => 'Login',
+    'continue' => 'Continue',
+    'civility' => 'Civility',
+    'address' => 'Address',
+    'additional_address' => 'Additional address',
+    'zip_code' => 'Zip Code',
+    'city' => 'City',
+    'phone' => 'Phone',
+    'country' => 'Pays',
+    'add_new_address' => 'Add a new address',
+];

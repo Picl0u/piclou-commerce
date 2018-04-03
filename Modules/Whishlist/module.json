@@ -1,0 +1,16 @@
+{
+    "name": "Whishlist",
+    "alias": "whishlist",
+    "description": "Gestion des listes de souhaits des clients",
+    "keywords": [],
+    "active": 1,
+    "order": 2,
+    "providers": [
+        "Modules\\Whishlist\\Providers\\WhishlistServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

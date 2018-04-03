@@ -1,0 +1,79 @@
+// Fonts
+//@import "../libs/font-awesome/css/fontawesome-all";
+
+// Kube
+@import "../libs/kube/src/kube";
+// Variables
+@import "variables";
+// jQToast
+@import "./jqtoast";
+// Remodal
+@import "../../../node_modules/remodal/src/remodal";
+@import "../../../node_modules/remodal/src/remodal-default-theme";
+
+// Default
+body{
+  background-color:$bodyBackgroundFront;
+  font-size:$fontSizeBase;
+  font-family: $fontFamilyBase;
+  line-height:$lineHeightBase;
+  margin:0;
+  padding:0;
+  color:$textColor;
+}
+h1,h2,h3,h4,h5,h6{
+  color:inherit;
+  font-family: $fontFamilyTitle;
+}
+a{
+  text-decoration:none;
+  color:inherit;
+}
+a:hover{
+  color:inherit;
+}
+.clear{
+  clear:both;
+}
+.l-container{
+  width:96%;
+  margin:0 auto;
+  position:relative;
+  max-width:$containerWidth;
+}
+img.img-to-background{
+  display:none;
+}
+.delete-infos{
+  display:none;
+}
+
+// Messages
+.message{
+  font-family:$fontFamilyBase;
+}
+.message.error{
+  background-color:$brand-danger;
+}
+
+// Theme
+@import "../../../Modules/Website/Resources/themes/default/assets/app";
+
+// Homepage
+@import './pages/homepage';
+// Contents
+@import './pages/contents';
+// Liste des produits
+@import './pages/shop/productList';
+// Liste des produits
+@import './pages/shop/flashSales';
+// Détail d'un produit
+@import './pages/shop/productShow';
+// Panier
+@import './pages/shop/cart';
+// Commander
+@import './pages/shop/orderProcess';
+// Compte client
+@import './pages/user';
+// Page contact
+@import './pages/contact';

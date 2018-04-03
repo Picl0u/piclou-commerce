@@ -1,0 +1,26 @@
+<?php
+    return [
+        "navigation" => 'Code promo',
+        "navigation_title" => "Gérez les codes promo pour vos commandes",
+        "add_title" => " Ajouter un nouveau code promo pour vos commandes",
+        "edit_title" => "Modifier le code promo pour vos commandes",
+        "id" => "ID",
+        "name" =>"Nom du code promo",
+        "coupon" =>"Code promo",
+        "reduce" => "Réduction",
+        "percent" =>"Réduction par pourcentage",
+        "price" =>"Réduction par prix",
+        "price_min" =>"Prix minimum",
+        "begin" =>"Date de début",
+        "end" =>"Date de fin",
+        "optional" => "Optionnel",
+        "users" => "Clients",
+        "users_desc" => "Selectionnez les utilisateurs concernés - Si vide, tout le monde peut utiliser le code promo ",
+        "products" => "Produits",
+        "products_desc" => "Selectionnez les produits concernés - Si vide, tout les produits sont concernés",
+        "updated_at" => "Dernière modification",
+        'create' => "Le code promo a bien été créé.",
+        'edit' => "Le code promo a bien été modifié.",
+        'delete' => "Le code promo a bien été supprimé.",
+        'informations' => "Informations"
+    ];

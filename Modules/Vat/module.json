@@ -1,0 +1,16 @@
+{
+    "name": "Vat",
+    "alias": "vat",
+    "description": "Gestion des taxes pour les produits",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Vat\\Providers\\VatServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

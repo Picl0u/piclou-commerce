@@ -1,0 +1,258 @@
+// Connexion
+.login-register-section, .account-section{
+  padding:35px 0 35px 0;
+  form{
+    .form-item{
+      margin-bottom:15px;
+      label{
+
+      }
+      input, select{
+        height:30px;
+        color:$productColor;
+        border:1px solid $inputBorder;
+        border-radius:0;
+        background-color: $inputBackground;
+      }
+    }
+    button {
+      display:block;
+      margin:15px auto 0 auto;
+      background-color:$mainColor;
+      color:#FFF;
+      width: 100%;
+      max-width:370px;
+      height:40px;
+      line-height:40px;
+      text-align:center;
+      font-size:1.375rem;
+      padding:0;
+      font-family:$fontFamilyBase;
+      text-transform:uppercase;
+      transition-duration:$durationTransition;
+      border-radius:0;
+      svg{
+        display:inline-block;
+        margin-right:10px;
+      }
+    }
+    button:hover{
+      opacity:0.8;
+    }
+  }
+  .forgot-password{
+    text-align:center;
+    padding:20px 0 0 0;
+    a{
+      transition-duration:$durationTransition;
+    }
+    a:hover{
+      color:$mainColor;
+    }
+  }
+  .links{
+    text-align:center;
+    font-size:1rem;
+    a{
+      transition-duration:$durationTransition;
+      text-decoration:underline;
+      svg{
+        display:inline-block;
+        margin-right:7px;
+        font-size:0.750rem;
+      }
+    }
+    a:hover{
+      color:$mainColor;
+    }
+  }
+}
+.account-section{
+  @import './sidebar';
+  .account-link{
+    border:1px solid $borderColor;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-height:160px;
+    font-size:1.125rem;
+    a{
+      color:$mainColor;
+      transition-duration:$durationTransition;
+      svg{
+        display:block;
+        margin:0 auto 20px auto;
+        font-size:1.5rem;
+      }
+    }
+    a:hover{
+      color:$mainFontColor;
+    }
+  }
+  .title{
+    a{
+      display:inline-block;
+      padding:7px;
+      background-color:$mainColor;
+      color:#FFF;
+      transition-duration:$durationTransition;
+      font-size:0.750rem;
+      font-family:$fontFamilyBase;
+    }
+    a:hover{
+      opacity:0.8;
+    }
+  }
+  .addresses{
+    .address{
+      border:1px solid $borderColor;
+      padding:20px;
+      margin-bottom:15px;
+      .link{
+        padding:10px 0 0 0;
+        display:flex;
+        justify-content: space-between;
+        align-items:center;
+        font-size:0.750rem;
+        a{
+          display:inline-block;
+          padding:7px;
+          background-color:$mainColor;
+          color:#FFF;
+          transition-duration:$durationTransition;
+        }
+        a:hover{
+          opacity:0.8;
+        }
+      }
+    }
+  }
+  .whishlist{
+    @import './shop/product';
+    .whish-to-cart{
+      display:inline-block;
+      padding:7px;
+      background-color:$mainColor;
+      color:#FFF;
+      transition-duration:$durationTransition;
+      margin:20px 0 0 0;
+    }
+    .whish-to-cart:hover{
+      opacity:0.8;
+    }
+  }
+  .orders{
+    table{
+      th,td{
+        vertical-align: middle;
+        text-align:center;
+        font-size:0.750rem;
+        a{
+          display:inline-block;
+          padding:3px 7px;
+          background-color:$mainColor;
+          color:#FFF;
+          transition-duration:$durationTransition;
+          margin:0 0 10px 0;
+        }
+        a:hover{
+          opacity:0.8;
+        }
+      }
+    }
+  }
+  .order{
+    .order-title{;
+      margin:0 0 30px 0;
+      padding:20px;
+      border:1px solid $mainColor;
+      font-size:1rem;
+    }
+    a.invoice-link{
+      display:inline-block;
+      padding:10px 30px;
+      color:#FFF;
+      background-color:$brand-primary;
+      font-size:1.125rem;
+      transition-duration:$durationTransition;
+      margin:0 0 30px 0;
+    }
+    a.invoice-link:hover{
+      opacity:0.8;
+    }
+    .order-infos, .order-user{
+      margin:30px 0 0 0;
+      padding:20px;
+      border:1px solid $mainColor;
+    }
+    .order-history{
+      margin:0 0 30px 0;
+      .history{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:7px 0;
+        border-bottom:1px solid $borderColor;
+        font-size:1rem;
+        .label{
+          font-size:inherit;
+        }
+      }
+    }
+    .address{
+      margin-top:30px;
+      padding:20px;
+      border:1px solid $mainColor;
+    }
+    .order-detail{
+      margin:30px 0 0 0;
+    }
+    .order-return-history{
+      .return{
+        padding:20px;
+        border:1px solid $mainColor;
+        margin:0 0 30px 0;
+        .date{
+          padding:0 0 10px 0;
+          font-style:italic;
+          font-size:0.750rem;
+        }
+        p{
+          margin-bottom:0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:768px) {
+  .order{
+    text-align:center;
+  }
+  .account-section .order .order-history .history{
+    display:block;
+  }
+  .cart{
+    text-align:center;
+    .border-top {
+      border-top: 0;
+      border-bottom: 1px solid $borderColor;
+    }
+    .border-top:first-child {
+      border-top: 1px solid $borderColor !important;
+    }
+    .quantity-cart{
+      display:inline-block;
+    }
+    .tfoot
+    {
+      border-bottom:1px solid $borderColor;
+      .col{
+        text-align:center !important;
+        margin-bottom:5px !important;
+        padding:5px 0 5px 0;
+      }
+    }
+  }
+}

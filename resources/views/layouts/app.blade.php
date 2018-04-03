@@ -1,0 +1,1 @@
+@extends('theme::' . config('ikCommerce.theme') . '.layout')

@@ -1,0 +1,25 @@
+{
+    "name": "nwidart/shoppingcart",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\ShoppingCart\\Providers\\ShoppingCartServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\ShoppingCart\\": ""
+        }
+    }
+}

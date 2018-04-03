@@ -1,0 +1,16 @@
+{
+    "name": "Coupon",
+    "alias": "coupon",
+    "description": "Gestion des codes promos",
+    "keywords": [],
+    "active": 1,
+    "order": 10,
+    "providers": [
+        "Modules\\Coupon\\Providers\\CouponServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

@@ -1,0 +1,16 @@
+{
+    "name": "Admin",
+    "alias": "admin",
+    "description": "Gestion des administrateurs",
+    "keywords": [],
+    "active": 1,
+    "order": 9,
+    "providers": [
+        "Modules\\Admin\\Providers\\AdminServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

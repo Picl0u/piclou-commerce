@@ -1,0 +1,16 @@
+{
+    "name": "Order",
+    "alias": "order",
+    "description": "Gestions des commandes, factures, transporteurs, pays et statuts",
+    "keywords": [],
+    "active": 1,
+    "order": 1,
+    "providers": [
+        "Modules\\Order\\Providers\\OrderServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

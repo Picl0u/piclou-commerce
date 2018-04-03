@@ -1,0 +1,16 @@
+{
+    "name": "Content",
+    "alias": "content",
+    "description": "Gestion des pages (catégories + contenus)",
+    "keywords": [],
+    "active": 1,
+    "order": 4,
+    "providers": [
+        "Modules\\Content\\Providers\\ContentServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

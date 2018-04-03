@@ -1,0 +1,16 @@
+{
+    "name": "Slider",
+    "alias": "slider",
+    "description": "Gestion du slider",
+    "keywords": [],
+    "active": 1,
+    "order": 5,
+    "providers": [
+        "Modules\\Slider\\Providers\\SliderServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

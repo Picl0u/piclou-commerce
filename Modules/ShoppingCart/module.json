@@ -1,0 +1,16 @@
+{
+    "name": "ShoppingCart",
+    "alias": "shoppingcart",
+    "description": "Gestion du panier des clients",
+    "keywords": [],
+    "active": 1,
+    "order": 2,
+    "providers": [
+        "Modules\\ShoppingCart\\Providers\\ShoppingCartServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}
