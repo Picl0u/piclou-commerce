@@ -29,17 +29,6 @@
         @endif
     </div>
 
-    <div class="product-categories">
-        @foreach($product->ProductsHasCategories as $category)
-            <a href="{{ route('product.list',[
-                'slug' => $category->ShopCategory->getTranslation('slug', config('app.locale')),
-                'id' => $category->ShopCategory->id
-            ]) }}">
-                {{ $category->ShopCategory->getTranslation('name', config('app.locale')) }}
-            </a>
-        @endforeach
-    </div>
-
     <div class="product-title">
         <h4>
             <a href="{{ $productLink }}">
