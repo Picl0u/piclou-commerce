@@ -27,13 +27,20 @@
         </a>
         <a href="{{ route("shop.products.imports") }}">
             <i class="fas fa-upload"></i>
-            Importer
+            Importer produits
         </a>
-        <!--
-        <a href="{{ route("shop.products.positions") }}">
+        <a href="{{ route("shop.products.export") }}">
             <i class="fas fa-download"></i>
-            Exporter
-        </a>-->
+            Exporter produits
+        </a>
+        <a href="{{ route("shop.products.attributes.imports") }}">
+            <i class="fas fa-upload"></i>
+            Importer déclinaisons
+        </a>
+        <a href="{{ route("shop.products.export.attributes") }}">
+            <i class="fas fa-download"></i>
+            Exporter déclinaisons
+        </a>
         <div class="clear"></div>
     </div>
     <div class="datatable-container">

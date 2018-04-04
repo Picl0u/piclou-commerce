@@ -544,6 +544,230 @@ class AdminProductController extends Controller
     }
 
     /**
+     * Exporter produits
+     * @return mixed
+     */
+    public function export_product()
+    {
+        $products = Product::orderBy('id', 'desc')
+            ->get();
+
+        return Excel::create('export-products-'.now(), function($excel) use ($products) {
+            $excel->setTitle('Export products-'.date('d/m/Y à H:i'));
+
+            $excel->sheet('Sheetname', function($sheet) use ($products) {
+
+                $sheet->row(1, array(
+                    'Ref',
+                    'Published (1 ou 0)',
+                    'Name',
+                    'Slug',
+                    'Summary',
+                    'Description',
+                    'isbn_code',
+                    'upc_code',
+                    'ean_code',
+                    'main_category',
+                    'categories',
+                    'taxe (en %)',
+                    'price_ht',
+                    'price_ttc',
+                    'week_selection (1 ou 0)',
+                    'reduce_date_begin',
+                    'reduce_date_end',
+                    'reduce_price',
+                    'reduce_percent',
+                    'no_stock (1 ou 0)',
+                    'stock_brut',
+                    'stock_booked',
+                    'stock_available',
+                    'Weight (kg)',
+                    'height (cm)',
+                    'length (cm)',
+                    'width (cm)',
+                    'seo_title',
+                    'seo_description',
+                    'position'
+                ));
+                foreach ($products as $key => $product) {
+
+                    $shopCategory = $product->ShopCategory;
+                    if($shopCategory) {
+                        $category = $shopCategory->getTranslation('name', config('app.locale'));
+                    }
+                    $shopCategories = $product->ProductsHasCategories;
+                    $categories = '';
+                    foreach ($shopCategories as $cat) {
+                        $categories .= $category->ShopCategory->getTranslation('name', config('app.locale')) . '/';
+                    }
+                    if(!empty($categories)) {
+                        $categories = substr($categories,0, -1);
+                    }
+
+                    $sheet->row(($key + 2), array(
+                        $product->reference,
+                        $product->published,
+                        $product->name,
+                        $product->slug,
+                        $product->summary,
+                        $product->description,
+                        $product->isbn_code,
+                        $product->upc_code,
+                        $product->ean_code,
+                        $category,
+                        $categories,
+                        $product->Vat->percent,
+                        $product->price_ht,
+                        $product->price_ttc,
+                        $product->week_selection,
+                        $product->reduce_date_begin,
+                        $product->reduce_date_end,
+                        $product->reduce_price,
+                        $product->reduce_percent,
+                        0,
+                        $product->stock_brut,
+                        $product->stock_booked,
+                        $product->stock_available,
+                        $product->weight,
+                        $product->height,
+                        $product->length,
+                        $product->width,
+                        $product->seo_title,
+                        $product->seo_description,
+                        $product->order,
+                    ));
+                }
+            });
+        })->download('csv');
+    }
+
+    /**
+     * Exporter les déclinaisons
+     * @return mixed
+     */
+    public function export_attributes()
+    {
+        return Excel::create('export-declinaisons-'.now(), function($excel) {
+            $excel->setTitle('Export declinaisons-'.date('d/m/Y à H:i'));
+
+            $excel->sheet('Sheetname', function($sheet) {
+
+                $sheet->row(1, array(
+                    'Product ref',
+                    'Ref',
+                    'Declinaison:Valeur (separe par un /)',
+                    'Slug',
+                    'Quantite',
+                    'Impact prix',
+                    'Ean',
+                    'UPC',
+                    'Isbn'
+                ));
+            });
+        })->download('csv');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function import_attributes()
+    {
+        $directory = config('ikCommerce.fileUploadFolder') . '/' .
+            config('ikCommerce.directoryImport') .
+            '/attributes';
+
+        if(!file_exists($directory)){
+            if(!mkdir($directory,0770, true)){
+                dd('Echec lors de la création du répertoire : '.$directory);
+            }
+        }
+        $files = File::allFiles($directory);
+
+        return view($this->viewPath . 'importAttributes', compact('files'));
+    }
+
+    public function import_attributes_store(Request $request)
+    {
+        if(config('ikCommerce.demo')) {
+            session()->flash('error',"Cette fonctionnalité a été désactivée pour la version démo.");
+            return redirect()->route($this->route . 'index');
+        }
+
+        if($request->hasFile('file')){
+            $file = $request->file;
+            $directory = config('ikCommerce.directoryImport') . "/attributes";
+
+            $dir = config('ikCommerce.fileUploadFolder') . DIRECTORY_SEPARATOR .$directory;
+            if(!file_exists($dir)){
+                if(!mkdir($dir,0770, true)){
+                    dd('Echec lors de la création du répertoire : '.$dir);
+                }
+            }
+            $fileName = $file->getClientOriginalName();
+            $extension = getExtension($fileName);
+
+            $fileNewName = time().str_slug(str_replace(".".$extension,"",$fileName)).".".strtolower($extension);
+            $file->move($dir,$fileNewName);
+            $targetPath = $dir. "/" . $fileNewName;
+            if($file->getClientOriginalExtension() == 'csv' || $file->getClientOriginalExtension() == 'xls') {
+
+                Excel::load($targetPath)->chunk(100, function($results){
+                    $results->each(function($row) {
+                        dd($row);
+                        if(
+                            !empty($row->product_ref) &&
+                            !is_null($row->product_ref)
+                        ) {
+                            $product = Product::where('reference', $row->product_ref)->First();
+                            if (!is_null($product)) {
+                                $insert = [
+                                    'product_id' => $product->id,
+                                    'stock_brut' => (isset($row->quantiti)) ? $row->quantiti : $row->quantite,
+                                    'ean_code' => $row->ean,
+                                    'upc_code' => $row->upc,
+                                    'isbn_code' => $row->isbn
+                                ];
+
+                                $reference = $row->ref;
+                                if (empty($reference)) {
+                                    $reference = $product->reference;
+
+                                    $declinaisons = explode('/', $row->declinaisonvaleur_sipari_par_un);
+                                    foreach ($declinaisons as $declinaison) {
+                                        $attr = explode(":", $declinaison);
+                                        $insertAttributes[$attr[0]] = $attr[1];
+                                        $reference .= "-" . $attr[1];
+                                    }
+
+                                    $attribute = ProductsAttribute::where("reference", $row->ref)
+                                        ->where('product_id', $product->id)
+                                        ->first();
+
+                                    if (!is_null($attribute)) {
+                                        $attribute->update($insert);
+                                    } else {
+                                        $attribute = ProductsAttribute::insert($insert);
+                                    }
+
+                                    $attribute->update([
+                                        'declinaisons' => $attribute->setAttr('declinaisons', $insertAttributes),
+                                        'reference' => $reference
+                                    ]);
+
+                                }
+                            }
+                        }
+                    });
+                    session()->flash('success',"L'importation s'est déroulée avec succès.");
+                });
+            } else {
+                session()->flash('error',"L'extension de votre fichier n'est pas valide :" . $file->getClientOriginalExtension());
+            }
+        }
+        return redirect()->route($this->route . 'imports');
+    }
+
+    /**
      * Traductions
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse

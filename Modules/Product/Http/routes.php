@@ -101,10 +101,21 @@ Route::group([
 
         });
 
-        Route::group(['middleware' => ['permission:create - order|permission:edit - order']], function () {
+        Route::group(['middleware' => ['permission:create - product|permission:edit - product']], function () {
             Route::get("/products/imports", 'AdminProductController@import')->name("shop.products.imports");
             Route::post("/products/imports/store", 'AdminProductController@storeImport')
                 ->name("shop.products.imports.store");
+
+            Route::get("/products/export", 'AdminProductController@export_product')
+                ->name("shop.products.export");
+
+            Route::get("/products/export/attributes", 'AdminProductController@export_attributes')
+                ->name("shop.products.export.attributes");
+
+            Route::get("/products/imports/attributes", 'AdminProductController@import_attributes')
+                ->name("shop.products.attributes.imports");
+            Route::post("/products/imports/attributes/store", 'AdminProductController@import_attributes_store')
+                ->name("shop.products.imports.attributes.store");
         });
 
         /* Catégories */
