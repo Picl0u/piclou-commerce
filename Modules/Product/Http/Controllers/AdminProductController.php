@@ -549,13 +549,10 @@ class AdminProductController extends Controller
      */
     public function export_product()
     {
-        $products = Product::orderBy('id', 'desc')
-            ->get();
-
-        return Excel::create('export-products-'.now(), function($excel) use ($products) {
+        return Excel::create('export-products-'.now(), function($excel){
             $excel->setTitle('Export products-'.date('d/m/Y à H:i'));
 
-            $excel->sheet('Sheetname', function($sheet) use ($products) {
+            $excel->sheet('Sheetname', function($sheet){
 
                 $sheet->row(1, array(
                     'Ref',
@@ -589,54 +586,7 @@ class AdminProductController extends Controller
                     'seo_description',
                     'position'
                 ));
-                foreach ($products as $key => $product) {
 
-                    $shopCategory = $product->ShopCategory;
-                    if($shopCategory) {
-                        $category = $shopCategory->getTranslation('name', config('app.locale'));
-                    }
-                    $shopCategories = $product->ProductsHasCategories;
-                    $categories = '';
-                    foreach ($shopCategories as $cat) {
-                        $categories .= $category->ShopCategory->getTranslation('name', config('app.locale')) . '/';
-                    }
-                    if(!empty($categories)) {
-                        $categories = substr($categories,0, -1);
-                    }
-
-                    $sheet->row(($key + 2), array(
-                        $product->reference,
-                        $product->published,
-                        $product->name,
-                        $product->slug,
-                        $product->summary,
-                        $product->description,
-                        $product->isbn_code,
-                        $product->upc_code,
-                        $product->ean_code,
-                        $category,
-                        $categories,
-                        $product->Vat->percent,
-                        $product->price_ht,
-                        $product->price_ttc,
-                        $product->week_selection,
-                        $product->reduce_date_begin,
-                        $product->reduce_date_end,
-                        $product->reduce_price,
-                        $product->reduce_percent,
-                        0,
-                        $product->stock_brut,
-                        $product->stock_booked,
-                        $product->stock_available,
-                        $product->weight,
-                        $product->height,
-                        $product->length,
-                        $product->width,
-                        $product->seo_title,
-                        $product->seo_description,
-                        $product->order,
-                    ));
-                }
             });
         })->download('csv');
     }
