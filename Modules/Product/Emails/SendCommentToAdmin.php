@@ -2,12 +2,12 @@
 
 namespace Modules\Product\Emails;
 
-use App\User;
+use Modules\User\Entities\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Modules\Product\Http\Product;
+use Modules\Product\Entities\Product;
 
 class SendCommentToAdmin extends Mailable
 {
@@ -43,9 +43,9 @@ class SendCommentToAdmin extends Mailable
     {
         return $this->subject('Nouveau commentaire sur le produit '.$this->product->name)
             ->view('product::email.comment',[
-            'product' => $this->product,
-            'user' => $this->user,
-            'comment' => $this->comment
-        ]);
+                'product' => $this->product,
+                'user' => $this->user,
+                'comment' => $this->comment
+            ]);
     }
 }
