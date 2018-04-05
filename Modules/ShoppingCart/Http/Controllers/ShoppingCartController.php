@@ -854,6 +854,11 @@ class ShoppingCartController extends Controller
         $alertProduct = [];
         foreach(Cart::instance('shopping')->content() as $key => $row){
             $product = Product::where('reference', $row->id)->first();
+            if(empty($product)) {
+                $declinaison = ProductsAttribute::where('reference', $row->id)->First();
+                $product = $declinaison->Product;
+                $product->reference = $row->id;
+            }
             $productsOrder[$key] = [
                 'order_id' => $order->id,
                 'uuid' => Uuid::uuid4()->toString(),
