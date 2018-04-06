@@ -16,7 +16,7 @@
     @endif
 @endsection
 
-@section('seoImage'){{ asset($product->image) }}@endsection
+ @section('seoImage'){{ asset($product->getMedias('image','src')) }}@endsection
 
 @section('content')
     <div class="head-title">
