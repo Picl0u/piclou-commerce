@@ -283,7 +283,7 @@ class ProductController extends Controller
         if (!empty(setting('products.socialEnable'))) {
             $share = (new Share(url()->current(),
                 $product->name . " - " . setting('generals.websiteName'),
-                asset($product->image))
+                asset($product->getMedias('image','src')))
             )->render();
         }
 
