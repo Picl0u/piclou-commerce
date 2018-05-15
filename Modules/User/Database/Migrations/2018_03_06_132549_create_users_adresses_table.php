@@ -18,7 +18,7 @@ class CreateUsersAdressesTable extends Migration
             $table->string("uuid");
             $table->boolean('delivery')->default(0)->nullable();
             $table->boolean('billing')->default(0)->nullable();
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->enum('gender', ['M', 'Mme'])->nullable();
             $table->string('firstname');

@@ -17,9 +17,9 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->string('uuid');
             $table->boolean('published');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('firstname');
             $table->string('lastname');

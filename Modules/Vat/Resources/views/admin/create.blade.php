@@ -1,4 +1,4 @@
-@extends("layouts.admin")
+@extends("resources.views.layouts.admin")
 
 @section('title')
     <nav class="breadcrumbs">

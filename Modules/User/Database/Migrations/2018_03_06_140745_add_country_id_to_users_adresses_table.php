@@ -14,7 +14,7 @@ class AddCountryIdToUsersAdressesTable extends Migration
     public function up()
     {
         Schema::table('users_adresses', function (Blueprint $table) {
-            $table->integer('country_id');
+            $table->integer('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries');
         });
     }

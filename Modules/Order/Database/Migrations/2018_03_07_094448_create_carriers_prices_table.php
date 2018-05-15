@@ -16,9 +16,9 @@ class CreateCarriersPricesTable extends Migration
         Schema::create('carriers_prices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('uuid');
-            $table->integer('carriers_id');
+            $table->integer('carriers_id')->unsigned();
             $table->foreign('carriers_id')->references('id')->on('carriers');
-            $table->integer('country_id');
+            $table->integer('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries');
             $table->float("price_min");
             $table->float("price_max");

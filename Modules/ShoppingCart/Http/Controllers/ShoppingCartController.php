@@ -724,7 +724,7 @@ class ShoppingCartController extends Controller
         }
         $totalOrder = $total + $shipping['price'];
 
-        $payment = (new PaypalPayment())->process($totalOrder);
+        $payment = (new CitelisPayment())->process($totalOrder);
         Cart::instance('shopping')->store($uuid);
         $storeCart = [
             'token' => $payment['token'],
@@ -773,7 +773,7 @@ class ShoppingCartController extends Controller
 
     public function orderReturn(Request $request)
     {
-        $payment = (new PaypalPayment())->auto($request);
+        $payment = (new CitelisPayment())->auto($request);
         $id = $payment['id'];
         $token = $payment['token'];
 
@@ -1010,6 +1010,11 @@ class ShoppingCartController extends Controller
         $alertProduct = [];
         foreach(Cart::instance('shopping')->content() as $key => $row){
             $product = Product::where('reference', $row->id)->first();
+            if(empty($product)) {
+                $declinaison = ProductsAttribute::where('reference', $row->id)->First();
+                $product = $declinaison->Product;
+                $product->reference = $row->id;
+            }
             $productsOrder[$key] = [
                 'order_id' => $order->id,
                 'uuid' => Uuid::uuid4()->toString(),
@@ -1062,16 +1067,13 @@ class ShoppingCartController extends Controller
 
         // TODO changer emplacements emails + email shopping cart
         Mail::to($order->user_email)
-            ->from(setting('generals.email'), setting('generals.websiteName'))
             ->send(new OrderCreated($order, $productsOrder, $invoiceLink));
 
         Mail::to(setting('generals.email'))
-            ->from(setting('generals.email'), setting('generals.websiteName'))
             ->send(new OrderCreated($order, $productsOrder, $invoiceLink));
 
         if(!empty($alertProduct)) {
             Mail::to(setting('generals.email'))
-                ->from(setting('generals.email'), setting('generals.websiteName'))
                 ->send(new ProductQuantityAlert($alertProduct));
         }
 

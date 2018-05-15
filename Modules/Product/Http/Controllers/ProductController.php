@@ -278,6 +278,7 @@ class ProductController extends Controller
             ->orderBy('order','ASC')
             ->get();
 
+
         // Partage réseaux sociaux
         $share = [];
         if (!empty(setting('products.socialEnable'))) {

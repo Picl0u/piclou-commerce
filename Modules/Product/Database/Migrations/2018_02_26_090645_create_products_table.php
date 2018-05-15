@@ -23,8 +23,7 @@ class CreateProductsTable extends Migration
             $table->text('summary')->nullable();
             $table->text('description');
             $table->string('image')->nullable();
-            $table->integer('shop_category_id');
-            $table->foreign('shop_category_id')->references('id')->on('shopCategories');
+            $table->integer('shop_category_id')->unsigned();
             $table->integer('order')->nullable()->default(0);
             $table->string('reference');
             $table->string('isbn_code')->nullable();
@@ -47,22 +46,23 @@ class CreateProductsTable extends Migration
             $table->string('seo_title')->nullable();
             $table->text('seo_description')->nullable();
             $table->timestamps();
+            $table->foreign('shop_category_id')->references('id')->on('shop_categories');
         });
 
         Schema::create('products_has_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned();
+            $table->integer('shop_category_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
-            $table->integer('shop_category_id');
-            $table->foreign('shop_category_id')->references('id')->on('shopCategories');
+            $table->foreign('shop_category_id')->references('id')->on('shop_categories');
         });
 
         Schema::create('products_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->integer('product_id')->unsigned();
             $table->string('image');
             $table->integer('order')->nullable()->default(0);
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

@@ -30,9 +30,9 @@ class CreateCouponsTable extends Migration
         Schema::create('coupon_users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('uuid');
-            $table->integer('coupon_id');
+            $table->integer('coupon_id')->unsigned();
             $table->foreign('coupon_id')->references('id')->on('coupons');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->timestamp('use')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
@@ -41,9 +41,9 @@ class CreateCouponsTable extends Migration
         Schema::create('coupon_products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('uuid');
-            $table->integer('coupon_id');
+            $table->integer('coupon_id')->unsigned();
             $table->foreign('coupon_id')->references('id')->on('coupons');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });

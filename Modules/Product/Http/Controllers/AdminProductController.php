@@ -198,6 +198,7 @@ class AdminProductController extends Controller
                 }
             }
         }
+        dd("test");
 
         if($request->hasFile('images')){
             foreach($request->images as $key => $img){

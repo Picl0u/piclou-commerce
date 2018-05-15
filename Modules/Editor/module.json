@@ -1,0 +1,16 @@
+{
+    "name": "Editor",
+    "alias": "editor",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Editor\\Providers\\EditorServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

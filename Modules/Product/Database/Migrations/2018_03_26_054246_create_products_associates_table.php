@@ -15,9 +15,9 @@ class CreateProductsAssociatesTable extends Migration
     {
         Schema::create('products_associates', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_parent');
+            $table->integer('product_parent')->unsigned();
             $table->foreign('product_parent')->references('id')->on('products');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
